@@ -20,7 +20,6 @@ class CustomCombinedExtractor(nn.Module):
             nn.Linear(self.grid_extractor.features_dim + 64, features_dim),
             nn.ReLU()
         )
-
     def forward(self, observations: torch.Tensor) -> torch.Tensor:
         grid_features = self.grid_extractor(observations["color_grid"])
         semantic_features = self.semantic_extractor(observations["features"])
