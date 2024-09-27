@@ -11,9 +11,9 @@ config = {
     'batch': 16,
     'horizon': 32,
 
-    'learning_rate': 1e-6,
+    'learning_rate': 1e-5,
     'epsilon_clip': 0.1,
-    'entropy_coeff': -0.02,
+    'entropy_coeff': -0.01,
     'vf_loss_coeff': 0.5,
 
     'prompts': ['获得高分'],

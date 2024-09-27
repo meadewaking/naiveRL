@@ -21,9 +21,9 @@ class Model(nn.Module):
     def __init__(self):
         super(Model, self).__init__()
         self.vision_encoder = Vision_Encoder()
-        self.vision_encoder.eval()
-        for param in self.vision_encoder.parameters():
-            param.requires_grad = False
+        # self.vision_encoder.eval()
+        # for param in self.vision_encoder.parameters():
+        #     param.requires_grad = False
         self.fc_vision = nn.Linear(1024, 2048)
         self.llm_state_dict = load_safetensors(config['llm_path'],
                                                device=torch.device("cuda" if torch.cuda.is_available() else "cpu"),

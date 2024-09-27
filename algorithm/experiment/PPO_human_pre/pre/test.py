@@ -1,3 +1,5 @@
+import time
+
 import gym
 import torch
 import os
@@ -14,8 +16,8 @@ def main():
     PPO_model = Model()
     PPO_alg = Alg(PPO_model)
     PPO_agent = Agent(PPO_alg)
-    if os.path.exists('../tools/ppo.pth'):
-        PPO_agent.alg.old_pi.load_state_dict(torch.load('../tools/ppo.pth').state_dict())
+    if os.path.exists('../tools/ppo_pre_27k.pth'):
+        PPO_agent.alg.old_pi.load_state_dict(torch.load('../tools/ppo_pre_27k.pth').state_dict())
     image_process = ImageProcess()
     scores = []
 
@@ -27,6 +29,7 @@ def main():
 
         while not done:
             env.render()
+            time.sleep(0.01)
             a = PPO_agent.predict(s_shadow)
             s_, r, done, info = env.step(a)
             s_shadow = image_process.StackNext(s_)
